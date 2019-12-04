@@ -36,7 +36,6 @@ public class Server {
                 }
                 resend.setStopService();
 
-
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -65,11 +64,16 @@ public class Server {
             try {
                 while (!stopService){
                     String str = in.readUTF();
+                    if (str.equals("/exit")) {
+                        out.writeUTF("/end");
+                        break;
+                    }
                     System.out.println(str);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            System.out.println("Поток закрыт");
         }
     }
 

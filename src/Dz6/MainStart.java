@@ -11,20 +11,19 @@ public class MainStart {
         String ipAddress = "localhost";
         Scanner in = new Scanner(System.in);
 
-        while (true) {
-            System.out.println("В каком режиме будем работать? \n S(erver) / C(lient)");
-            char answer = Character.toLowerCase(in.nextLine().charAt(0));
-            switch (answer){
-                case ('s'):
-                    new Server(port);
-                    break;
-                case ('c'):
-                    new Client(ipAddress, port);
-                    break;
-                default:
-                    System.out.printf("Не правильный выбор. Повторите");
-                    break;
-            }
+        System.out.println("В каком режиме будем работать? \n S(erver) / C(lient)");
+        char answer = Character.toLowerCase(in.nextLine().charAt(0));
+        switch (answer){
+            case ('s'):
+                new Server(port);
+                break;
+            case ('c'):
+                new Client(ipAddress, port);
+                break;
+            default:
+                System.out.printf("Не правильный выбор.");
+                break;
         }
+
     }
 }

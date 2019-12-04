@@ -28,13 +28,9 @@ public class Client {
                 out.writeUTF(str);
             }
 
-            System.out.println("Тормозим поток");
             resend.setStopService();
-            resend.join();
-            System.out.println("Поток остановлен");
+
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
             close();
@@ -43,7 +39,6 @@ public class Client {
 
     private void close() {
         try {
-            System.out.println("Закрываем сокет");
             in.close();
             out.close();
             socket.close();
@@ -57,7 +52,6 @@ public class Client {
 
         public void setStopService() {
             stopService = true;
-            System.out.println("Клиент будет закрыт");
         }
 
         @Override
@@ -65,6 +59,10 @@ public class Client {
             try {
                 while (!stopService){
                     String str = in.readUTF();
+                    if (str.equals("/exit")) {
+                        out.writeUTF("/end");
+                        break;
+                    }
                     System.out.println(str);
                 }
             } catch (IOException e) {
