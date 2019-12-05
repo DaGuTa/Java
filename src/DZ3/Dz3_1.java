@@ -28,6 +28,7 @@ public class Dz3_1 {
             System.out.println(me.getKey() + ": " + me.getValue());
         }
     }
+
     public static void main(String[] args) {
         String[] str = {"Яблоко","Персик","Абрикос","Арбуз","Виноград","Лимон","Персик","Груша","Яблоко","Абрикос","Персик","Хурма","Абрикос","Банан","Абрикос",};
         unique(str);
